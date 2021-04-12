@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="CopyRecord" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="892,3471" sap2010:WorkflowViewState.IdRef="CopyRecord_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="CopyRecord" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="892,3446" sap2010:WorkflowViewState.IdRef="CopyRecord_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="66">
       <x:String>System.Activities</x:String>
@@ -76,9 +76,10 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CopyRecord" sap:VirtualizedContainerService.HintSize="692,3406" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CopyRecord" sap:VirtualizedContainerService.HintSize="692,3381" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="MyDataTable" />
       <Variable x:TypeArguments="x:String" Name="jsonParse" />
@@ -103,13 +104,16 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:DeserializeJsonArray>
-    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop through the JSON array&#xA;" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="650,3033" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[jsonarray]">
+    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop through the JSON array&#xA;" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="650,3008" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[jsonarray]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="njl:JToken">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="njl:JToken" Name="jsonitem" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="614,2857" sap2010:WorkflowViewState.IdRef="Sequence_15">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="614,2832" sap2010:WorkflowViewState.IdRef="Sequence_15">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="mailbodytemplate" />
+            </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -122,7 +126,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:BuildDataTable>
-            <Sequence DisplayName="Recording Sequence" sap:VirtualizedContainerService.HintSize="572,2624" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="Recording Sequence" sap:VirtualizedContainerService.HintSize="572,2599" sap2010:WorkflowViewState.IdRef="Sequence_4">
               <Sequence.Variables>
                 <Variable x:TypeArguments="ui:GenericValue" Name="Name" />
                 <Variable x:TypeArguments="ui:GenericValue" Name="Address" />
@@ -134,31 +138,42 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="530,2532" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="530,2507" sap2010:WorkflowViewState.IdRef="Sequence_17">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="Open a new chrome tab" BrowserType="Chrome" DisplayName="Open chrome://newtab/" sap:VirtualizedContainerService.HintSize="488,2440" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="chrome://newtab/">
-                  <ui:OpenBrowser.Body>
+                <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'NewTab Go Chrome_wi'" sap:VirtualizedContainerService.HintSize="488,1721" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="fe08191e88b868b6ca914462b8b965c0" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='New Tab - Google Chrome' /&gt;">
+                  <ui:WindowScope.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                       </ActivityAction.Argument>
-                      <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Do" sap:VirtualizedContainerService.HintSize="454,2308" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                        <Sequence.Variables>
-                          <Variable x:TypeArguments="x:String" Name="mailbodytemplate" />
-                        </Sequence.Variables>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="454,1575" sap2010:WorkflowViewState.IdRef="Sequence_16">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="Search &quot;fakenamegenerator.com&quot; and press &quot;Enter&quot;" DisplayName="Type Into 'Chrome_RenderWidgetHost...'" EmptyField="False" sap:VirtualizedContainerService.HintSize="412,165" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="[jsonitem(&quot;searchvalue&quot;).ToString + &quot;[k(enter)]&quot;]">
+                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Chrome_RenderWidgetHost...'" sap:VirtualizedContainerService.HintSize="412,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition OffsetX="559" OffsetY="313" Position="TopLeft" />
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5c84859c-5073-43d9-96fc-4bc4f9695d14" InformativeScreenshot="ab93a49aa2d5d1ce9b11e877de5a7014" Selector="&lt;wnd aaname='Horizontal' cls='Chrome_RenderWidgetHostHWND' title='Chrome Legacy Window' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" DisplayName="Type Into 'Chrome_RenderWidgetHost...'" EmptyField="False" sap:VirtualizedContainerService.HintSize="412,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="False" SimulateType="False" Text="[jsonitem(&quot;searchvalue&quot;).ToString + &quot;[k(enter)]&quot;]">
                           <ui:TypeInto.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d25693e8-ca43-4cf6-aa29-1288923165c4" InformativeScreenshot="93e9cb68755f34dc0855a900f7e06e06" Selector="&lt;wnd aaname='New Tab' cls='Chrome_RenderWidgetHostHWND' title='Chrome Legacy Window' /&gt;">
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="22c771b1-58f5-409a-a8c3-e3d0382efab9" InformativeScreenshot="053520d0ae0f9ae1231537b0b0e6a178" Selector="&lt;wnd aaname='Horizontal' cls='Chrome_RenderWidgetHostHWND' title='Chrome Legacy Window' /&gt;">
                               <ui:Target.TimeoutMS>
                                 <InArgument x:TypeArguments="x:Int32" />
                               </ui:Target.TimeoutMS>
@@ -167,11 +182,6 @@
                               </ui:Target.WaitForReady>
                             </ui:Target>
                           </ui:TypeInto.Target>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
                         </ui:TypeInto>
                         <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop for copying 'n' number of records" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="412,1163" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Enumerable.Range(0,CInt(jsonitem(&quot;noofnames&quot;)))]">
                           <ui:ForEach.Body>
@@ -280,62 +290,47 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:ForEach>
-                        <ui:WriteRange AddHeaders="False" sap2010:Annotation.AnnotationText="Write all data in excel" DataTable="[MyDataTable]" DisplayName="Write datatable into excel sheet" sap:VirtualizedContainerService.HintSize="412,146" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="[jsonitem(&quot;sheetname&quot;).ToString]" StartingCell="[jsonitem(&quot;startcellname&quot;).ToString]" WorkbookPath="[jsonitem(&quot;excelpath&quot;).ToString]">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:WriteRange>
-                        <ui:ReadTextFile sap2010:Annotation.AnnotationText="Read the html mail template" Content="[mailbodytemplate]" DisplayName="Read Text File" FileName="[jsonitem(&quot;mailtemplatepath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="412,110" sap2010:WorkflowViewState.IdRef="ReadTextFile_3">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:ReadTextFile>
-                        <Assign sap2010:Annotation.AnnotationText="Assign the number of records in html template" sap:VirtualizedContainerService.HintSize="412,102" sap2010:WorkflowViewState.IdRef="Assign_3">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[mailbodytemplate]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">[mailbodytemplate.Replace("#number" , jsonitem("noofnames").ToString)]</InArgument>
-                          </Assign.Value>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </Assign>
-                        <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Mail the html template file" Body="[mailbodytemplate]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="412,176" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="True" IsDraft="False" Subject="[jsonitem(&quot;mailsubject&quot;).ToString]" To="[jsonitem(&quot;mailto&quot;).ToString]">
-                          <ui:SendOutlookMail.Files>
-                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4" />
-                          </ui:SendOutlookMail.Files>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:SendOutlookMail>
-                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="412,83" sap2010:WorkflowViewState.IdRef="Sequence_13">
-                          <Sequence.Variables>
-                            <Variable x:TypeArguments="x:String" Name="mailbodytemplate" />
-                          </Sequence.Variables>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </Sequence>
                       </Sequence>
                     </ActivityAction>
-                  </ui:OpenBrowser.Body>
+                  </ui:WindowScope.Body>
+                </ui:WindowScope>
+                <ui:WriteRange AddHeaders="False" sap2010:Annotation.AnnotationText="Write all data in excel" DataTable="[MyDataTable]" DisplayName="Write datatable into excel sheet" sap:VirtualizedContainerService.HintSize="488,146" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="[jsonitem(&quot;sheetname&quot;).ToString]" StartingCell="[jsonitem(&quot;startcellname&quot;).ToString]" WorkbookPath="[jsonitem(&quot;excelpath&quot;).ToString]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                </ui:OpenBrowser>
+                </ui:WriteRange>
+                <ui:ReadTextFile sap2010:Annotation.AnnotationText="Read the html mail template" Content="[mailbodytemplate]" DisplayName="Read Text File" FileName="[jsonitem(&quot;mailtemplatepath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="488,110" sap2010:WorkflowViewState.IdRef="ReadTextFile_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ReadTextFile>
+                <Assign sap2010:Annotation.AnnotationText="Assign the number of records in html template" sap:VirtualizedContainerService.HintSize="488,102" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[mailbodytemplate]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[mailbodytemplate.Replace("#number" , jsonitem("noofnames").ToString)]</InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+                <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Mail the html template file" Body="[mailbodytemplate]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="488,176" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="True" IsDraft="False" Subject="[jsonitem(&quot;mailsubject&quot;).ToString]" To="[jsonitem(&quot;mailto&quot;).ToString]">
+                  <ui:SendOutlookMail.Files>
+                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4" />
+                  </ui:SendOutlookMail.Files>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:SendOutlookMail>
               </Sequence>
             </Sequence>
           </Sequence>
