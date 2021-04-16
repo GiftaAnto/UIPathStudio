@@ -348,7 +348,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:SendOutlookMail>
-                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="488,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Success&quot;]" />
+                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Success&quot;]" />
               </Sequence>
             </Sequence>
           </Sequence>
