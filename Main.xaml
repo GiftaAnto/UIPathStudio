@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="892,3670" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="892,3769" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -80,7 +80,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CopyRecord" sap:VirtualizedContainerService.HintSize="692,3605" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence DisplayName="CopyRecord" sap:VirtualizedContainerService.HintSize="692,3704" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="MyDataTable" />
       <Variable x:TypeArguments="x:String" Name="jsonParse" />
@@ -105,13 +105,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:DeserializeJsonArray>
-    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop through the JSON array&#xA;" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="650,3232" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[jsonarray]">
+    <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop through the JSON array&#xA;" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="650,3331" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[jsonarray]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="njl:JToken">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="njl:JToken" Name="jsonitem" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="614,3056" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="614,3155" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="mailbodytemplate" />
             </Sequence.Variables>
@@ -127,7 +127,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:BuildDataTable>
-            <Sequence DisplayName="Recording Sequence" sap:VirtualizedContainerService.HintSize="572,2823" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <Sequence DisplayName="Recording Sequence" sap:VirtualizedContainerService.HintSize="572,2922" sap2010:WorkflowViewState.IdRef="Sequence_5">
               <Sequence.Variables>
                 <Variable x:TypeArguments="ui:GenericValue" Name="Name" />
                 <Variable x:TypeArguments="ui:GenericValue" Name="Address" />
@@ -155,7 +155,7 @@
                   </ActivityAction>
                 </ui:OpenBrowser.Body>
               </ui:OpenBrowser>
-              <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="530,2507" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="530,2606" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -348,6 +348,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:SendOutlookMail>
+                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="488,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Success&quot;]" />
               </Sequence>
             </Sequence>
           </Sequence>
